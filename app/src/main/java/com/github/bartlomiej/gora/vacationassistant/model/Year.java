@@ -1,9 +1,11 @@
 package com.github.bartlomiej.gora.vacationassistant.model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
+@Entity(foreignKeys = {@ForeignKey(entity = User.class,
+        childColumns = "userId", parentColumns = "id")})
 public class Year {
 
     @PrimaryKey
@@ -12,6 +14,7 @@ public class Year {
     private Integer startOnDemand;
     private Integer left;
     private Integer leftOnDemand;
+    private Integer userId;
 
     public String getYear() {
         return year;
@@ -51,5 +54,13 @@ public class Year {
 
     public void setLeftOnDemand(Integer leftOnDemand) {
         this.leftOnDemand = leftOnDemand;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }
